@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DarkMode Toggle</title>
+    <style>
+      .light-mode {
+        background-color: white;
+        color: black;
+      }
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+      #toggle-dark-mode {
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <h1>Dark Mode Toggle Example</h1>
+    <button id="toggle-dark-mode">Change to dark mode</button>
+
+    <script>
+      let body = document.body;
+      let themeBtn = document.getElementById("toggle-dark-mode");
+
+      function toggleTheme() {
+        if (body.classList.contains("light-mode")) {
+          body.classList.remove("light-mode");
+          body.classList.add("dark-mode");
+          themeBtn.textContent = "Change to Light Mode";
+        } else if (body.classList.contains("dark-mode")) {
+          body.classList.remove("dark-mode");
+          body.classList.add("light-mode");
+          themeBtn.textContent = "Change to Dark Mode";
+        }
+      }
+
+      themeBtn.addEventListener("click", toggleTheme);
+    </script>
+  </body>
+</html>
