@@ -21,27 +21,61 @@
         color: white;
         border-radius: 5px;
       }
+      .dark-mode #toggle-dark-mode {
+        background-color: #b32100;
+      }
+      .stuff {
+        color: black;
+        background-color: aquamarine;
+      }
+      .dark-mode .stuff {
+        color: white;
+        background-color: transparent;
+      }
     </style>
   </head>
   <body class="light-mode">
     <h1>Dark Mode Toggle Example</h1>
     <button id="toggle-dark-mode">Change to dark mode</button>
 
+    <p class="stuff">THis is some text, it is black in light mode</p>
+
     <script>
       let body = document.body;
       let themeBtn = document.getElementById("toggle-dark-mode");
 
-      function toggleTheme() {
-        if (body.classList.contains("light-mode")) {
+      function applyTheme(theme) {
+        if (theme === "dark") {
           body.classList.remove("light-mode");
           body.classList.add("dark-mode");
-          themeBtn.textContent = "Change to Light Mode";
-        } else if (body.classList.contains("dark-mode")) {
+          themeBtn.textContent = "Change to light mode";
+        } else {
           body.classList.remove("dark-mode");
           body.classList.add("light-mode");
-          themeBtn.textContent = "Change to Dark Mode";
+          themeBtn.textContent = "Change to dark mode";
         }
       }
+
+      function loadTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          applyTheme(savedTheme);
+        } else {
+          applyTheme("light");
+        }
+      }
+
+      function toggleTheme() {
+        if (body.classList.contains("light-mode")) {
+          applyTheme("dark");
+          localStorage.setItem("theme", "dark");
+        } else {
+          applyTheme("light");
+          localStorage.setItem("theme", "light");
+        }
+      }
+
+      loadTheme();
 
       themeBtn.addEventListener("click", toggleTheme);
     </script>
